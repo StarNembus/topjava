@@ -15,13 +15,13 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
+    private static final int CALORIES_PER_DAY = 2000;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("getAll");
-        request.setAttribute("mealList", MealsUtil.getExceeded(MealsUtil.mealList, 2000));
+        request.setAttribute("mealList", MealsUtil.getExceeded(MealsUtil.mealList, CALORIES_PER_DAY));
 
         request.getRequestDispatcher("/meals.jsp").forward(request, response);
-//        response.sendRedirect("meals.jsp");
     }
 }
