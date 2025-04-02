@@ -18,6 +18,8 @@
 <section>
 <h3><a href="index.html">Home</a></h3>
 
+<h3>Meal List</a></h3>
+<a href="meals?action=create">Add meal</a>
 <table border="1" cellpadding="8" cellspacing="0">
    <thread>
    <tr>
@@ -37,6 +39,8 @@
                    </td>
                    <td>${meal.description}</td>
                    <td>${meal.calories}</td>
+                   <td><a href="meals?action=update&id"=${meal.id}>Update</a></td>
+                   <td><a href="meals?action=delete&id"=${meal.id}</a>Delete</td>
         </tr>
     </c:forEach>
   </table>
