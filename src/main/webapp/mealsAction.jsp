@@ -30,7 +30,13 @@
               <dd><input type="number" name="calories" value="${meal.calories}"></dd>
         </dl>
         <button type="submit">Add</button>
-        <button onclick="window.history.back()">Cancel</button>
+        <button type="button" name="cancel" value="${cancel}" onclick="goPrev()">Cancel</button>
+        <script>
+            function goPrev()
+                {
+                 window.history.back();
+                }
+        </script>
     </form>
 <section>
 </body>

@@ -56,9 +56,13 @@ public class MealServlet extends HttpServlet {
                 LocalDateTime.parse(request.getParameter("dateTime")),
                 request.getParameter("description"),
                 Integer.parseInt(request.getParameter("calories")));
-        mealrepository.save(meal);
-        response.sendRedirect("meals");
-        log.info(meal.isNew() ? "create {}" : "update {}", meal.getId());
+        if(request.equals("cancel")) {
+            response.sendRedirect("mealList");
+        } else {
+            mealrepository.save(meal);
+            response.sendRedirect("meals");
+            log.info(meal.isNew() ? "create {}" : "update {}", meal.getId());
+        }
     }
     private int getId(HttpServletRequest request) {
         String id = Objects.requireNonNull(request.getParameter("id"));
