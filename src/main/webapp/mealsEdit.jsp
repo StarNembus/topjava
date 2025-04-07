@@ -19,7 +19,7 @@
         <input type="hidden" name="id" value="${meal.id}"/><br/>
         <dl>
             <dt>DateTime:</dt>
-            <dd><input type="datetime-local" name="dateTime" value="${meal.dateTime}"></dd>
+            <dd><input type="datetime-local" value="${meal.dateTime}" name="dateTime" required></dd>
         </dl>
         <dl>
              <dt>Description:</dt>
@@ -27,7 +27,7 @@
         </dl>
         <dl>
               <dt>Calories:</dt>
-              <dd><input type="number" name="calories" value="${meal.calories}"></dd>
+              <dd><input type="number" name="calories" value="${meal.calories}" min=0></dd>
         </dl>
         <button type="submit">Add</button>
         <button type="button" name="cancel" value="${cancel}" onclick="goPrev()">Cancel</button>

@@ -8,9 +8,9 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MealRepositoryImpl implements MealRepository {
-    private static final Map<Integer, Meal> repository = new ConcurrentHashMap<>();
-    private static final AtomicInteger counter = new AtomicInteger(0);
+public class MealRepositoryMemory implements MealRepository {
+    private final Map<Integer, Meal> repository = new ConcurrentHashMap<>();
+    private final AtomicInteger counter = new AtomicInteger(0);
 
     {
            save(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500));
@@ -24,10 +24,12 @@ public class MealRepositoryImpl implements MealRepository {
 
     @Override
     public Meal save(Meal meal) {
-        if(meal.isNew()) {
+        if (meal.isNew()) {
             meal.setId(counter.incrementAndGet());
+            repository.put(meal.getId(), meal);
+            return meal;
         }
-        return repository.put(meal.getId(), meal);
+        return repository.computeIfPresent(meal.getId(), (id, oldMeal) -> meal);
     }
 
     @Override
@@ -36,12 +38,11 @@ public class MealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public void remove(int id) {
-        repository.remove(id);
-    }
-
-    @Override
     public Collection<Meal> getAll() {
         return repository.values();
+    }
+    @Override
+    public boolean delete(int id){
+        return repository.remove(id) != null;
     }
 }

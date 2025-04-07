@@ -7,8 +7,9 @@ import java.util.*;
 public interface MealRepository {
     Meal save(Meal meal);
     Meal get(int id);
-    void remove(int id);
     Collection<Meal> getAll();
+    boolean delete(int id);
+
 
 
 }
