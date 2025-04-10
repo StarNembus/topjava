@@ -2,7 +2,8 @@ package ru.javawebinar.topjava.repository;
 
 import ru.javawebinar.topjava.model.User;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
 
 public interface UserRepository {
     // null if not found, when updated
@@ -17,5 +18,5 @@ public interface UserRepository {
     // null if not found
     User getByEmail(String email);
 
-    List<User> getAll();
+    Collection<User> getAll();
 }
