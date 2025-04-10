@@ -17,6 +17,9 @@ public class InMemoryUserRepository implements UserRepository {
     private final AtomicInteger counter = new AtomicInteger(0);
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
 
+    public static final int USER_ID = 1;
+    public static final int ADMIN_ID = 2;
+
 
     @Override
     public boolean delete(int id) {
@@ -32,7 +35,7 @@ public class InMemoryUserRepository implements UserRepository {
             return user;
         }
         log.info("save {}", user);
-        return userMapRepository.computeIfPresent(user.getId(), (id, oldMeal) -> user);
+        return userMapRepository.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
 
     @Override
@@ -53,6 +56,6 @@ public class InMemoryUserRepository implements UserRepository {
     public User getByEmail(String email) {
         log.info("getByEmail {}", email);
         return getAll().stream().filter(user -> user.getEmail().equalsIgnoreCase(email))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException("User don't have email"));
+                .findFirst().orElse(null);
     }
 }
