@@ -30,7 +30,7 @@
     <th></th>
    </tr>
    </thread>
-   <c:forEach items="${requestScope.meals}" var="meal">
+   <c:forEach items="${meals}" var="meal">
     <tr class="${meal.excess ? 'red-row-not-normal' : 'green-row-normal'}">
         </td>
         <td>
