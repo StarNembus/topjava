@@ -11,13 +11,21 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import static ru.javawebinar.topjava.UserTestData.*;
+
+
 @Repository
 public class InMemoryUserRepository extends InMemoryBaseRepository<User> implements UserRepository {
 
     private final Map<Integer, User> usersMap = new ConcurrentHashMap<>();
     private final AtomicInteger counter = new AtomicInteger(0);
-    static final int USER_ID = 1;
-    static final int ADMIN_ID = 2;
+    public void init() {
+        map.clear();
+        put(user);
+        put(admin);
+        put(guest);
+        counter.getAndSet(GUEST_ID + 1);
+    }
 
     @Override
     public boolean delete(int id) {
