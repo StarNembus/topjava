@@ -31,16 +31,18 @@
    </tr>
    </thread>
    <c:forEach items="${requestScope.meals}" var="meal">
-    <tr class="${meal.excess ? 'red-row-not-normal' : 'green-row-normal'}">
-        <td>
-            <fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parseDate"/>
-            <fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
-        <td>${meal.description}</td>
-        <td>${meal.calories}</td>
-        <td><a href="meals?action=update&id=${meal.id}">Update</a></td>
-        <td><a href="meals?action=delete&id=${meal.id}">Delete</a></td>
-    </tr>
-   </c:forEach>
+        <tr class="${meal.excess ? 'red-row-not-normal' : 'green-row-normal'}">
+            </td>
+            <td>
+                <fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parseDate"/>
+                <fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
+            </td>
+            <td>${meal.description}</td>
+            <td>${meal.calories}</td>
+            <td><a href="meals?action=update&id=${meal.id}">Update</a></td>
+            <td><a href="meals?action=delete&id=${meal.id}">Delete</a></td>
+        </tr>
+       </c:forEach>
   </table>
 <section>
 </body>
