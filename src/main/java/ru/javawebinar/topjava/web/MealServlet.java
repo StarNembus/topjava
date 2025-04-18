@@ -34,7 +34,6 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        log.info("getAll");
         if(action == null) {
             request.setAttribute("meals", MealsUtil.getExceeded(mealRepository.getAll(), CALORIES_PER_DAY));
             request.getRequestDispatcher("/meals.jsp").forward(request, response);
@@ -43,12 +42,14 @@ public class MealServlet extends HttpServlet {
             log.info("delete {}", id);
             mealRepository.delete(id);
             response.sendRedirect("meals");
-        } else {
+        } else if(action.equals("create")){
             log.info("begin action create meal");
-            final Meal meal = action.equals("create") ? new Meal(LocalDateTime.now(), "", DEFAULT_CALORIES) :
-                    mealRepository.get(getId(request));
+            final Meal meal = new Meal(LocalDateTime.now(), "", DEFAULT_CALORIES);
             request.setAttribute("meal", meal);
             request.getRequestDispatcher("/mealsEdit.jsp").forward(request,response);
+        } else {
+            request.setAttribute("meals", MealsUtil.getExceeded(mealRepository.getAll(), CALORIES_PER_DAY));
+            request.getRequestDispatcher("/meals.jsp").forward(request, response);
         }
     }
 

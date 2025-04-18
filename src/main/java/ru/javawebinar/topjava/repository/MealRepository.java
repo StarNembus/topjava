@@ -10,6 +10,4 @@ public interface MealRepository {
     Collection<Meal> getAll();
     boolean delete(int id);
 
-
-
 }

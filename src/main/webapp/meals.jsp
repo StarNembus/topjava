@@ -32,7 +32,6 @@
    </thread>
    <c:forEach items="${meals}" var="meal">
     <tr class="${meal.excess ? 'red-row-not-normal' : 'green-row-normal'}">
-        </td>
         <td>
             <fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parseDate"/>
             <fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
