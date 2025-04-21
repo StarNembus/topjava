@@ -45,7 +45,7 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public Collection<User> getAll() {
+    public List<User> getAll() {
         log.info("getAll");
         return userMapRepository.values().stream()
                 .sorted(Comparator.comparing(User :: getName).thenComparing(User :: getEmail))
