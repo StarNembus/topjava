@@ -45,7 +45,7 @@ public class MealsUtil {
         return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 
-    public static List<MealTo> getExceeded(Collection<Meal> meals, int caloriesPerDay) {
+    public static List<MealTo> getExceeded(List<Meal> meals, int caloriesPerDay) {
         return getFilteredWithExceed(meals, LocalTime.MIN, LocalTime.MAX, caloriesPerDay);
     }
 

@@ -50,7 +50,7 @@ public class MealServlet extends HttpServlet {
             final Meal meal = action.equals("create") ? new Meal(LocalDateTime.now(), "", DEFAULT_CALORIES) :
                     mealRepository.get(getId(request), SecurityUtil.authUserId());
             request.setAttribute("meal", meal);
-            request.getRequestDispatcher("/mealsEdit.jsp").forward(request,response);
+            request.getRequestDispatcher("/mealForm.jsp").forward(request,response);
         }
     }
 
