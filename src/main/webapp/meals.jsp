@@ -37,6 +37,8 @@
                 <fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parseDate"/>
                 <fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
             </td>
+            <td>${meal.dateTime.toLocalDate()}</td>
+            <td>${meal.dateTime.toLocalTime()}</td>
             <td>${meal.description}</td>
             <td>${meal.calories}</td>
             <td><a href="meals?action=update&id=${meal.id}">Update</a></td>
