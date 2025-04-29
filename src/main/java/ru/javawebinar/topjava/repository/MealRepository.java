@@ -1,11 +1,11 @@
 package ru.javawebinar.topjava.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
-
+@Repository
 public interface MealRepository {
     Meal save(Meal meal, int userId);
 

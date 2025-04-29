@@ -6,13 +6,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
-import ru.javawebinar.topjava.util.exception.NotFoundException;
-import ru.javawebinar.topjava.web.MealServlet;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.OptionalInt;
-import java.util.stream.Collectors;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static ru.javawebinar.topjava.util.DateTimeUtil.atStartOfDayOrMin;
@@ -22,8 +18,6 @@ import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFound;
 @Service
 public class MealService {
     private final MealRepository mealRepository;
-
-    private static final Logger log = getLogger(MealService.class);
 
     public MealService(MealRepository mealRepository) {
         this.mealRepository = mealRepository;

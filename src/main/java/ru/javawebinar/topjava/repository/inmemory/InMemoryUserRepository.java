@@ -12,9 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Repository
-public class InMemoryUserRepository implements UserRepository {
-    private final Map<Integer, User> userMapRepository = new ConcurrentHashMap<>();
-    private final AtomicInteger counter = new AtomicInteger(0);
+public class InMemoryUserRepository extends InMemoryBaseRepository<User> implements UserRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
 
     public static final int USER_ID = 1;
@@ -22,32 +20,9 @@ public class InMemoryUserRepository implements UserRepository {
 
 
     @Override
-    public boolean delete(int id) {
-        log.info("delete {}", id);
-        return true;
-    }
-
-    @Override
-    public User save(User user) {
-        if (user.isNew()) {
-            user.setId(counter.incrementAndGet());
-            userMapRepository.put(user.getId(), user);
-            return user;
-        }
-        log.info("save {}", user);
-        return userMapRepository.computeIfPresent(user.getId(), (id, oldUser) -> user);
-    }
-
-    @Override
-    public User get(int id) {
-        log.info("get {}", id);
-        return userMapRepository.get(id);
-    }
-
-    @Override
     public List<User> getAll() {
         log.info("getAll");
-        return userMapRepository.values().stream()
+        return getCollection().stream()
                 .sorted(Comparator.comparing(User :: getName).thenComparing(User :: getEmail))
                 .collect(Collectors.toList());
     }
@@ -55,7 +30,7 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public User getByEmail(String email) {
         log.info("getByEmail {}", email);
-        return getAll().stream().filter(user -> user.getEmail().equalsIgnoreCase(email))
+        return getCollection().stream().filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst().orElse(null);
     }
 }
