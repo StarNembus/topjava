@@ -26,7 +26,6 @@ public class MealRestController {
         this.mealService = mealService;
     }
 
-
     public List<MealTo> getAll() {
         int userId = SecurityUtil.authUserId();
         log.info("getAll meals for userId {}", userId);
