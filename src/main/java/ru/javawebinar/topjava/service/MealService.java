@@ -1,7 +1,6 @@
 package ru.javawebinar.topjava.service;
 
 
-
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
@@ -32,7 +31,7 @@ public class MealService {
     }
 
     public Meal get(int id, int userId) {
-         return checkNotFound(mealRepository.get(id, userId), userId);
+        return checkNotFound(mealRepository.get(id, userId), userId);
     }
 
     public List<Meal> getAll(int userId) {
@@ -44,6 +43,6 @@ public class MealService {
     }
 
     public List<Meal> getBetweenInclusive(@Nullable LocalDate startDate, @Nullable LocalDate endDate, int userId) {
-     return mealRepository.getBetweenHalfOpen(atStartOfDayOrMin(startDate), atStartOfNextDayOrMax(endDate), userId);
-     }
+        return mealRepository.getBetweenHalfOpen(atStartOfDayOrMin(startDate), atStartOfNextDayOrMax(endDate), userId);
+    }
 }

@@ -27,8 +27,8 @@ public class MealServlet extends HttpServlet {
         mealController = springContext.getBean(MealRestController.class);
     }
 
-      @Override
-      public void destroy() {
+    @Override
+    public void destroy() {
         springContext.close();
         super.destroy();
     }
@@ -39,11 +39,11 @@ public class MealServlet extends HttpServlet {
         Meal meal = new Meal(LocalDateTime.parse(request.getParameter("dateTime")),
                 request.getParameter("description"),
                 Integer.parseInt(request.getParameter("calories")));
-            if(StringUtils.hasLength(request.getParameter("id"))) {
-                mealController.update(meal);
-            } else {
-                mealController.create(meal);
-            }
+        if (StringUtils.hasLength(request.getParameter("id"))) {
+            mealController.update(meal);
+        } else {
+            mealController.create(meal);
+        }
         response.sendRedirect("meals");
     }
 
