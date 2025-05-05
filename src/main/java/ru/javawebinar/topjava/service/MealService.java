@@ -1,7 +1,7 @@
 package ru.javawebinar.topjava.service;
 
 
-import org.slf4j.Logger;
+
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
@@ -10,7 +10,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.slf4j.LoggerFactory.getLogger;
+
 import static ru.javawebinar.topjava.util.DateTimeUtil.atStartOfDayOrMin;
 import static ru.javawebinar.topjava.util.DateTimeUtil.atStartOfNextDayOrMax;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFound;

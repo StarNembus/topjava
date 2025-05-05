@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Meal extends AbstractBaseEntity {
-    private static final AtomicInteger idGenerator = new AtomicInteger();
     private final LocalDateTime dateTime;
 
     private final String description;
@@ -14,7 +13,7 @@ public class Meal extends AbstractBaseEntity {
     private final int calories;
 
     public Meal(Integer id, LocalDateTime dateTime, String description, int calories) {
-        super(id);
+        this.id = null;
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;

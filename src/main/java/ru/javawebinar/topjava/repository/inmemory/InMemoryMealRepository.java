@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.repository.inmemory;
 
+import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -17,7 +18,7 @@ import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.
 import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.USER_ID;
 
 
-
+@Repository
 public class InMemoryMealRepository implements MealRepository {
 
     private final Map<Integer, InMemoryBaseRepository<Meal>> usersMealsMap = new ConcurrentHashMap<>();
