@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ page import ="ru.javawebinar.topjava.util.DateTimeUtil"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -18,7 +17,7 @@
 <section>
 <h3><a href="index.html">Home</a></h3>
 
-<h3>Meal List</a></h3>
+<h3>Meal List</h3>
 <a href="meals?action=create">Add meal</a>
 <table border="1" cellpadding="8" cellspacing="0">
    <thread>
@@ -37,8 +36,6 @@
                 <fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parseDate"/>
                 <fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
             </td>
-            <td>${meal.dateTime.toLocalDate()}</td>
-            <td>${meal.dateTime.toLocalTime()}</td>
             <td>${meal.description}</td>
             <td>${meal.calories}</td>
             <td><a href="meals?action=update&id=${meal.id}">Update</a></td>
@@ -46,6 +43,6 @@
         </tr>
        </c:forEach>
   </table>
-<section>
+</section>
 </body>
 </html>

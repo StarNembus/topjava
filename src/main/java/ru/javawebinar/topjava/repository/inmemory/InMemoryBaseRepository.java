@@ -13,11 +13,11 @@ public class InMemoryBaseRepository <T extends AbstractBaseEntity>{
     private final Map<Integer, T> map = new ConcurrentHashMap<>();
 
     public T save(T entity) {
-         if (entity.isNew()) {
-             entity.setId(counter.incrementAndGet());
+        if (entity.isNew()) {
+            entity.setId(counter.incrementAndGet());
             map.put(entity.getId(), entity);
             return entity;
-         }
+        }
         return map.computeIfPresent(entity.getId(), (id, oldT) -> entity);
     }
 

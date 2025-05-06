@@ -6,7 +6,6 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 import ru.javawebinar.topjava.util.Util;
 
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.*;
@@ -21,6 +20,7 @@ import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.
 public class InMemoryMealRepository implements MealRepository {
 
     private final Map<Integer, InMemoryBaseRepository<Meal>> usersMealsMap = new ConcurrentHashMap<>();
+
 
     {
         MealsUtil.meals.forEach(meal -> save(meal, USER_ID));
@@ -48,6 +48,7 @@ public class InMemoryMealRepository implements MealRepository {
     public List<Meal> getAll(int userId) {
         return filterByPredicate(userId, meal -> true);
     }
+
 
     @Override
     public boolean delete(int id, int userId) {
