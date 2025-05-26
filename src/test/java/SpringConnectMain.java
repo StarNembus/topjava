@@ -1,5 +1,3 @@
-package ru.javawebinar.topjava;
-
 import java.sql.*;
 
 public class SpringConnectMain {
